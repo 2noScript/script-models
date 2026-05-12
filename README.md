@@ -1,12 +1,18 @@
 # Script Models
 
-Registry chứa các bộ prompt/model cho **Script Pro**. Mỗi model là một thư mục con trong `core/` với cấu trúc thống nhất.
+Registry chứa các bộ prompt/model cho **Script Pro**.
+
+**👉 Tải models về:** Dùng đường dẫn `plugin.json` bên dưới trong tool/extension của bạn:
+
+```
+https://raw.githubusercontent.com/2noScript/script-models/main/plugin.json
+```
 
 ## Cấu trúc
 
 ```
 script-models/
-├── plugin.json              # Registry — danh sách tất cả models
+├── plugin.json              # 🔸 File chủ đạo — load vào tool để nhận danh sách models
 ├── core/
 │   └── wildlife/            # Model: Wildlife & Science Creators
 │       ├── manifest.json    # Metadata + mapping script files
@@ -24,17 +30,25 @@ script-models/
 
 ## plugin.json — Registry
 
-Khai báo tất cả models. Cấu trúc mỗi entry:
+File **duy nhất** người dùng cần load. Chứa danh sách tất cả models:
 
 ```json
 {
-  "name": "Tên hiển thị",
-  "author": "2noScript",
-  "path": "https://raw.githubusercontent.com/2noScript/script-models/main/core/<model>/manifest.json",
-  "version": 1,
-  "icon": "https://raw.githubusercontent.com/2noScript/script-models/main/core/<model>/icon.png",
-  "description": "Mô tả ngắn",
-  "tags": ["Youtube"]
+  "metadata": {
+    "author": "2noScript",
+    "description": "Gen Script Pro"
+  },
+  "data": [
+    {
+      "name": "Wildlife & Science Creators",
+      "author": "2noScript",
+      "path": "https://raw.githubusercontent.com/2noScript/script-models/main/core/wildlife/manifest.json",
+      "version": 1,
+      "icon": "https://raw.githubusercontent.com/2noScript/script-models/main/core/wildlife/icon.png",
+      "description": "Ready-to-Use Prompts for Wildlife & Science Creators",
+      "tags": ["Youtube"]
+    }
+  ]
 }
 ```
 
@@ -80,7 +94,7 @@ Dùng để tự động chuẩn hoá icon cho tất cả models.
 
 ### convert_first_images_to_icons()
 
-Tự động tìm file ảnh đầu tiên (sort alphabet) trong mỗi thư mục con của `script-models/` (trừ `helper/` và thư mục ẩn) và chuẩn hoá thành `icon.png`:
+Tự động tìm file ảnh đầu tiên (sort alphabet) trong mỗi thư mục con của `core/` và chuẩn hoá thành `icon.png`:
 
 - Kích thước → `(128, 128)` nếu chưa đúng
 - Định dạng → PNG nếu chưa phải PNG

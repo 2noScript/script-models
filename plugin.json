@@ -7,10 +7,10 @@
     {
       "name": "Wildlife & Science Creators",
       "author": "2noScript",
-      "path": "https://raw.githubusercontent.com/2noScript/script-models/main/wildlife/manifest.json",
+      "path": "https://raw.githubusercontent.com/2noScript/script-models/main/core/wildlife/manifest.json",
       "version": 1,
-      "icon": "https://raw.githubusercontent.com/2noScript/script-models/main/wildlife/icon.png",
-      "description": "Ready-to-Use Prompts for Wildlife & Science Creators Inspired by Parasitário-style content  •  Upgraded with strict title format + 8-creature thumbnail",
+      "icon": "https://raw.githubusercontent.com/2noScript/script-models/main/core/wildlife/icon.png",
+      "description": "Ready-to-Use Prompts for Wildlife & Science Creators",
       "tags": ["Youtube"]
     }
   ]
