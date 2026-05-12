@@ -1,28 +1,28 @@
 # Script Models
 
-Registry chứa các bộ prompt/model cho **Script Pro**.
+Registry containing prompt/model collections for **Script Pro**.
 
-**👉 Tải models về:** Dùng đường dẫn `plugin.json` bên dưới trong tool/extension của bạn:
+**👉 Download models:** Use the `plugin.json` link below in your tool/extension:
 
 ```
 https://raw.githubusercontent.com/2noScript/script-models/main/plugin.json
 ```
 
-## Cấu trúc
+## Structure
 
 ```
 script-models/
-├── plugin.json              # 🔸 File chủ đạo — load vào tool để nhận danh sách models
+├── plugin.json              # 🔸 Main file — load into tool to receive model list
 ├── core/
 │   └── wildlife/            # Model: Wildlife & Science Creators
 │       ├── manifest.json    # Metadata + mapping script files
-│       ├── icon.png         # Icon 128×128 PNG
+│       ├── icon.png         # 128×128 PNG Icon
 │       ├── SCRIPT WRITER.md
 │       ├── THUMBNAIL GENERATOR.md
 │       ├── VIDEO IDEA GENERATOR.md
 │       └── VISUAL & IMAGE PROMPT MAKER.md
-└── helper/                  # Công cụ hỗ trợ (Python)
-    ├── convert.py           # Xử lý icon tự động
+└── helper/                  # Helper tools (Python)
+    ├── convert.py           # Automatic icon processing
     ├── pyproject.toml
     ├── uv.lock
     └── README.md
@@ -30,7 +30,7 @@ script-models/
 
 ## plugin.json — Registry
 
-File **duy nhất** người dùng cần load. Chứa danh sách tất cả models:
+The **only** file users need to load. Contains the complete list of models:
 
 ```json
 {
@@ -52,9 +52,9 @@ File **duy nhất** người dùng cần load. Chứa danh sách tất cả mode
 }
 ```
 
-## Cấu trúc một model
+## Model Structure
 
-Mỗi model là một thư mục con trong `core/` (ví dụ: `core/wildlife/`).
+Each model is a subdirectory in `core/` (example: `core/wildlife/`).
 
 ### manifest.json
 
@@ -75,50 +75,50 @@ Mỗi model là một thư mục con trong `core/` (ví dụ: `core/wildlife/`).
 }
 ```
 
-### Script files (`.md`)
+### Script Files (`.md`)
 
-Mỗi file Markdown chứa prompt cho một bước trong quy trình sản xuất nội dung:
+Each Markdown file contains prompts for a step in the content production workflow:
 
-- **SCRIPT WRITER.md** — viết kịch bản
-- **THUMBNAIL GENERATOR.md** — tạo thumbnail
-- **VIDEO IDEA GENERATOR.md** — ý tưởng video
-- **VISUAL & IMAGE PROMPT MAKER.md** — tạo prompt hình ảnh
+- **SCRIPT WRITER.md** — write script
+- **THUMBNAIL GENERATOR.md** — create thumbnail
+- **VIDEO IDEA GENERATOR.md** — video ideas
+- **VISUAL & IMAGE PROMPT MAKER.md** — create image prompts
 
 ### icon.png
 
-Icon đại diện cho model, chuẩn **128×128 PNG**.
+Icon representing the model, standard **128×128 PNG**.
 
-## helper/ — Công cụ icon
+## helper/ — Icon Tool
 
-Dùng để tự động chuẩn hoá icon cho tất cả models.
+Used to automatically standardize icons for all models.
 
 ### convert_first_images_to_icons()
 
-Tự động tìm file ảnh đầu tiên (sort alphabet) trong mỗi thư mục con của `core/` và chuẩn hoá thành `icon.png`:
+Automatically finds the first image file (alphabetically sorted) in each subdirectory of `core/` and standardizes it to `icon.png`:
 
-- Kích thước → `(128, 128)` nếu chưa đúng
-- Định dạng → PNG nếu chưa phải PNG
-- Tên → `icon.png` nếu chưa đúng tên
+- Size → `(128, 128)` if not already correct
+- Format → PNG if not already PNG
+- Name → `icon.png` if not already named correctly
 
-Nếu ảnh đã đúng cả 3 điều kiện → bỏ qua.
+If the image already meets all 3 conditions → skipped.
 
 ### convert_all_to_png(input_folder, size=None)
 
-Convert hàng loạt ảnh trong folder sang PNG, lưu vào thư mục `converted/`.
+Batch convert images in a folder to PNG, saving to `converted/` directory.
 
-### Sử dụng
+### Usage
 
 ```bash
 cd helper
 uv run python convert.py
 ```
 
-Yêu cầu: Python ≥ 3.12, Pillow.
+Requirements: Python ≥ 3.12, Pillow.
 
-## Thêm model mới
+## Adding a New Model
 
-1. Tạo thư mục: `mkdir core/<model>`
-2. Tạo `manifest.json` và các file `.md`
-3. Thêm ảnh vào thư mục (bất kỳ định dạng/kích thước nào)
-4. Chạy `uv run python convert.py` để tự động tạo `icon.png` chuẩn
-5. Thêm entry vào `plugin.json`
+1. Create directory: `mkdir core/<model>`
+2. Create `manifest.json` and `.md` files
+3. Add images to the directory (any format/size)
+4. Run `uv run python convert.py` to automatically create standardized `icon.png`
+5. Add entry to `plugin.json`
