@@ -22,10 +22,24 @@ Your task is to generate VIDEO TITLE IDEAS ONLY.
 - No graphic gore — focus on behavior, biology, and science
 - Suitable for global YouTube audience
 
-## OUTPUT FORMAT:
-- Output ONLY a single valid JSON object
-- No conversational text, no markdown code blocks
-- Structure: { "niches": [ { "name": "niche name", "ideas": [ { "title": "...", "hook": "...", "wow_factor": "...", "items": ["..."] } ] } ] }
+[OUTPUT SCHEMA]
+```json
+{
+  "niches": [
+    {
+      "name": "string",
+      "ideas": [
+        {
+          "title": "string",
+          "hook": "string",
+          "wow_factor": "string",
+          "items": ["string"]
+        }
+      ]
+    }
+  ]
+}
+```
 
 ---
 

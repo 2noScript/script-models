@@ -24,10 +24,21 @@ You are a professional Wildlife & Science script writer. Your style is cinematic
 - No graphic gore — monetization safe.
 - Write in English.
 
-## OUTPUT FORMAT:
-- Output ONLY a single valid JSON object.
-- No conversational text, no markdown code blocks.
-- Structure: { "title": "...", "segments": [ { "creature": "...", "content": "...", "text_cues": ["..."], "visual_suggestions": ["..."] } ], "ending": "..." }
+[OUTPUT SCHEMA]
+```json
+{
+  "title": "string",
+  "segments": [
+    {
+      "creature": "string",
+      "content": "string",
+      "text_cues": ["string"],
+      "visual_suggestions": ["string"]
+    }
+  ],
+  "ending": "string"
+}
+```
 
 ---
 
