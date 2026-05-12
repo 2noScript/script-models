@@ -1,0 +1,17 @@
+{
+  "metadata": {
+    "author": "2noScript",
+    "description": "Gen Script Pro"
+  },
+  "data": [
+    {
+      "name": "Ready-to-Use Prompts for Wildlife & Science Creators",
+      "author": "2noScript",
+      "path": "https://raw.githubusercontent.com/wnetbooks/extension-wnetbooks-develop/main/truyenqq/plugin.zip",
+      "version": 1,
+      "icon": "https://raw.githubusercontent.com/wnetbooks/extension-wnetbooks-develop/main/truyenqq/icon.png",
+      "description": "Ready-to-Use Prompts for Wildlife & Science Creators Inspired by Parasitário-style content  •  Upgraded with strict title format + 8-creature thumbnail",
+      "tags": ["Youtube"]
+    }
+  ]
+}
