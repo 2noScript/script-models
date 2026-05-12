@@ -31,10 +31,14 @@ def _find_first_image(folder):
 
 def convert_first_images_to_icons():
     parent = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    core_dir = os.path.join(parent, "core")
 
-    for name in sorted(os.listdir(parent)):
-        subdir = os.path.join(parent, name)
-        if not os.path.isdir(subdir) or name == "helper" or name.startswith("."):
+    if not os.path.isdir(core_dir):
+        return
+
+    for name in sorted(os.listdir(core_dir)):
+        subdir = os.path.join(core_dir, name)
+        if not os.path.isdir(subdir) or name.startswith("."):
             continue
 
         first = _find_first_image(subdir)
@@ -47,7 +51,7 @@ def convert_first_images_to_icons():
             should_rename = os.path.basename(first) != "icon.png"
 
             if not (should_resize or should_convert or should_rename):
-                print(f"⏭️  {name}/icon.png — already correct")
+                print(f"⏭️  core/{name}/icon.png — already correct")
                 continue
 
             if should_resize:
@@ -56,10 +60,10 @@ def convert_first_images_to_icons():
             dst = os.path.join(subdir, "icon.png")
             if first != dst:
                 os.remove(first)
-                print(f"🗑️  removed {os.path.relpath(first, parent)}")
+                print(f"🗑️  removed core/{os.path.basename(first)}")
 
             img.save(dst, "PNG")
-            print(f"✅ {name}/icon.png ({img.size[0]}x{img.size[1]}, PNG)")
+            print(f"✅ core/{name}/icon.png ({img.size[0]}x{img.size[1]}, PNG)")
 
 
 def convert_all_to_png(input_folder, size=None):
