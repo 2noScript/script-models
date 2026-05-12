@@ -5,11 +5,11 @@
   },
   "data": [
     {
-      "name": "Ready-to-Use Prompts for Wildlife & Science Creators",
+      "name": "Wildlife & Science Creators",
       "author": "2noScript",
-      "path": "https://raw.githubusercontent.com/wnetbooks/extension-wnetbooks-develop/main/truyenqq/plugin.zip",
+      "path": "https://raw.githubusercontent.com/2noScript/script-models/main/wildlife/manifest.json",
       "version": 1,
-      "icon": "https://raw.githubusercontent.com/wnetbooks/extension-wnetbooks-develop/main/truyenqq/icon.png",
+      "icon": "https://raw.githubusercontent.com/2noScript/script-models/main/wildlife/icon.png",
       "description": "Ready-to-Use Prompts for Wildlife & Science Creators Inspired by Parasitário-style content  •  Upgraded with strict title format + 8-creature thumbnail",
       "tags": ["Youtube"]
     }

@@ -1,0 +1,15 @@
+{
+  "metadata": {
+    "name": "wildlife",
+    "author": "2noScript",
+    "version": 1,
+    "description": "Ready-to-Use Prompts for Wildlife & Science Creators",
+    "step": []
+  },
+  "script": {
+    "idea": "SCRIPT WRITER.md",
+    "script": "SCRIPT WRITER.md",
+    "thumbnail": "THUMBNAIL GENERATOR.md",
+    "visuals": "VISUAL & IMAGE PROMPT MAKER.md"
+  }
+}
