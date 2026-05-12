@@ -17,10 +17,10 @@
       "description": "Ready-to-Use Prompts for Wildlife & Science Creators",
       "tags": ["Youtube"],
       "script": {
-        "idea": "VIDEO IDEA GENERATOR.md",
-        "script": "SCRIPT WRITER.md",
-        "thumbnail": "THUMBNAIL GENERATOR.md",
-        "visuals": "VISUAL & IMAGE PROMPT MAKER.md",
+        "idea": "IDEA_GENERATOR.md",
+        "script": "SCRIPT_WRITER.md",
+        "thumbnail": "THUMBNAIL_GENERATOR.md",
+        "visuals": "VISUAL_PROMPT_MAKER.md",
         "map": "MAP.md"
       }
     }

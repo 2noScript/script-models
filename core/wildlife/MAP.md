@@ -1,7 +1,7 @@
 # WILDLIFE PIPELINE MAPPING
 
 [IDEA_GENERATOR]
-# VIDEO IDEA GENERATOR.md
+# IDEA_GENERATOR.md
 # Map keys from JSON response to global variables
 MAPPINGS = {
   "TITLE": "niches[0].ideas[0].title",
@@ -16,7 +16,7 @@ MAPPINGS = {
 }
 
 [SCRIPT_WRITER]
-# SCRIPT WRITER.md
+# SCRIPT_WRITER.md
 # Map keys from JSON response to global variables
 MAPPINGS = {
   "TITLE": "title",
@@ -24,9 +24,9 @@ MAPPINGS = {
 }
 
 [THUMBNAIL_GENERATOR]
-# THUMBNAIL GENERATOR.md
+# THUMBNAIL_GENERATOR.md
 # Uses TITLE, C1, C2, C3, C4, C5, C6, C7, C8
 
 [VISUAL_PROMPT_MAKER]
-# VISUAL & IMAGE PROMPT MAKER.md
+# VISUAL_PROMPT_MAKER.md
 # Uses SCRIPT_CONTENT
