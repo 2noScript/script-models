@@ -1,20 +1,25 @@
 {
   "metadata": {
-    "author": "2noScript",
+    "repo": "2noScript",
     "description": "Gen Script Pro",
-    "version": 1,
-    "remotePath":"https://raw.githubusercontent.com/2noScript/script-models/main/core",
-    "localPath":""
+    "version": "1",
+    "remotePath": "https://raw.githubusercontent.com/2noScript/script-models/main/core",
+    "localPath": ""
   },
-  "data": [
+  "models": [
     {
       "name": "Wildlife & Science Creators",
       "author": "2noScript",
-      "path": "wildlife/manifest.json",
-      "version": 1,
-      "icon": "wildlife/icon.png",
+      "path": "wildlife",
+      "version": "1",
       "description": "Ready-to-Use Prompts for Wildlife & Science Creators",
-      "tags": ["Youtube"]
+      "tags": ["Youtube"],
+      "script": {
+        "idea": "VIDEO IDEA GENERATOR.md",
+        "script": "SCRIPT WRITER.md",
+        "thumbnail": "THUMBNAIL GENERATOR.md",
+        "visuals": "VISUAL & IMAGE PROMPT MAKER.md"
+      }
     }
   ]
 }
