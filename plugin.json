@@ -1,6 +1,8 @@
 {
   "metadata": {
-    "repo": "2noScript",
+    "providerLink":"https://github.com/2noScript",
+    "providerName": "2noScript",
+    "providerAvatar":"https://github.com/2noScript.png",
     "description": "Gen Script Pro",
     "version": "1",
     "remotePath": "https://raw.githubusercontent.com/2noScript/script-models/main/core",
