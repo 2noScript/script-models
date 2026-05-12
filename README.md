@@ -1,124 +1,101 @@
 # Script Models
 
-Registry containing prompt/model collections for **Script Pro**.
+Registry chứa các bộ prompt/model cho **Script Pro**.
 
-**👉 Download models:** Use the `plugin.json` link below in your tool/extension:
+**👉 Tải models về:** Dùng đường dẫn `plugin.json` bên dưới trong tool/extension của bạn:
 
 ```
 https://raw.githubusercontent.com/2noScript/script-models/main/plugin.json
 ```
 
-## Structure
+## Cấu trúc thư mục
 
 ```
 script-models/
-├── plugin.json              # 🔸 Main file — load into tool to receive model list
+├── plugin.json              # 🔸 File chủ đạo — load vào tool để nhận danh sách models
 ├── core/
 │   └── wildlife/            # Model: Wildlife & Science Creators
-│       ├── manifest.json    # Metadata + mapping script files
-│       ├── icon.png         # 128×128 PNG Icon
+│       ├── icon.png         # Icon 128×128 PNG (tự động tạo)
 │       ├── SCRIPT WRITER.md
 │       ├── THUMBNAIL GENERATOR.md
 │       ├── VIDEO IDEA GENERATOR.md
 │       └── VISUAL & IMAGE PROMPT MAKER.md
-└── helper/                  # Helper tools (Python)
-    ├── convert.py           # Automatic icon processing
+└── helper/                  # Công cụ hỗ trợ (Python)
+    ├── convert.py           # Xử lý icon tự động
     ├── pyproject.toml
     ├── uv.lock
     └── README.md
 ```
 
-## plugin.json — Registry
+## plugin.json — Registry Format
 
-The **only** file users need to load. Contains the complete list of models:
+File này định nghĩa metadata của nhà cung cấp và danh sách các model hiện có.
 
 ```json
 {
   "metadata": {
-    "author": "2noScript",
-    "description": "Gen Script Pro"
+    "providerName": "2noScript",
+    "providerLink": "https://github.com/2noScript",
+    "providerAvatar": "https://github.com/2noScript.png",
+    "description": "Gen Script Pro",
+    "version": "1",
+    "remotePath": "https://raw.githubusercontent.com/2noScript/script-models/main/core",
+    "localPath": ""
   },
-  "data": [
+  "models": [
     {
       "name": "Wildlife & Science Creators",
       "author": "2noScript",
-      "path": "https://raw.githubusercontent.com/2noScript/script-models/main/core/wildlife/manifest.json",
-      "version": 1,
-      "icon": "https://raw.githubusercontent.com/2noScript/script-models/main/core/wildlife/icon.png",
+      "path": "wildlife",
+      "version": "1",
       "description": "Ready-to-Use Prompts for Wildlife & Science Creators",
-      "tags": ["Youtube"]
+      "tags": ["Youtube"],
+      "script": {
+        "idea": "VIDEO IDEA GENERATOR.md",
+        "script": "SCRIPT WRITER.md",
+        "thumbnail": "THUMBNAIL GENERATOR.md",
+        "visuals": "VISUAL & IMAGE PROMPT MAKER.md"
+      }
     }
   ]
 }
 ```
 
-## Model Structure
+### Giải thích các trường:
+- **metadata**: Thông tin chung về registry.
+  - `remotePath`: Đường dẫn gốc để tải các file script.
+- **models**: Danh sách các bộ prompt.
+  - `path`: Tên thư mục con trong `core/`.
+  - `script`: Ánh xạ các file Markdown tương ứng với từng bước trong workflow.
 
-Each model is a subdirectory in `core/` (example: `core/wildlife/`).
+## Cấu trúc Script Files (`.md`)
 
-### manifest.json
+Mỗi file Markdown chứa prompt hệ thống (system prompt) cho một bước cụ thể:
 
-```json
-{
-  "metadata": {
-    "name": "<model>",
-    "author": "2noScript",
-    "version": 1,
-    "description": "..."
-  },
-  "script": {
-    "idea": "<file>.md",
-    "script": "<file>.md",
-    "thumbnail": "<file>.md",
-    "visuals": "<file>.md"
-  }
-}
-```
+- **VIDEO IDEA GENERATOR.md** — Tạo ý tưởng video.
+- **SCRIPT WRITER.md** — Viết kịch bản chi tiết.
+- **THUMBNAIL GENERATOR.md** — Tạo mô tả/ý tưởng thumbnail.
+- **VISUAL & IMAGE PROMPT MAKER.md** — Tạo prompt cho AI tạo hình ảnh.
 
-### Script Files (`.md`)
+## helper/ — Công cụ Icon
 
-Each Markdown file contains prompts for a step in the content production workflow:
+Dùng để tự động chuẩn hoá icon cho tất cả models bằng Python.
 
-- **SCRIPT WRITER.md** — write script
-- **THUMBNAIL GENERATOR.md** — create thumbnail
-- **VIDEO IDEA GENERATOR.md** — video ideas
-- **VISUAL & IMAGE PROMPT MAKER.md** — create image prompts
+### Cách sử dụng
 
-### icon.png
-
-Icon representing the model, standard **128×128 PNG**.
-
-## helper/ — Icon Tool
-
-Used to automatically standardize icons for all models.
-
-### convert_first_images_to_icons()
-
-Automatically finds the first image file (alphabetically sorted) in each subdirectory of `core/` and standardizes it to `icon.png`:
-
-- Size → `(128, 128)` if not already correct
-- Format → PNG if not already PNG
-- Name → `icon.png` if not already named correctly
-
-If the image already meets all 3 conditions → skipped.
-
-### convert_all_to_png(input_folder, size=None)
-
-Batch convert images in a folder to PNG, saving to `converted/` directory.
-
-### Usage
-
+1. Đảm bảo đã cài đặt `uv` hoặc `pip`.
+2. Chạy lệnh:
 ```bash
 cd helper
 uv run python convert.py
 ```
 
-Requirements: Python ≥ 3.12, Pillow.
+Công cụ sẽ tự động tìm ảnh đầu tiên trong mỗi thư mục model, resize về **128x128**, chuyển sang định dạng **PNG** và đổi tên thành `icon.png`.
 
-## Adding a New Model
+## Thêm Model mới
 
-1. Create directory: `mkdir core/<model>`
-2. Create `manifest.json` and `.md` files
-3. Add images to the directory (any format/size)
-4. Run `uv run python convert.py` to automatically create standardized `icon.png`
-5. Add entry to `plugin.json`
+1. **Tạo thư mục**: `mkdir core/<model-name>`
+2. **Thêm script**: Tạo các file `.md` với nội dung prompt.
+3. **Thêm ảnh**: Bỏ 1 file ảnh bất kỳ vào thư mục để làm icon.
+4. **Chuẩn hoá icon**: Chạy `helper/convert.py`.
+5. **Cập nhật registry**: Thêm entry mới vào mảng `models` trong `plugin.json`.
