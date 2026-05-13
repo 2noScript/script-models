@@ -18,11 +18,10 @@
       "tags": ["Youtube"],
       "pipeline": ["idea", "script", "thumbnail", "visuals"],
       "script": {
-        "idea": "IDEA_GENERATOR.md",
-        "script": "SCRIPT_WRITER.md",
-        "thumbnail": "THUMBNAIL_GENERATOR.md",
-        "visuals": "VISUAL_PROMPT_MAKER.md",
-        "map": "MAP.md"
+        "idea": "IDEA_GENERATOR",
+        "script": "SCRIPT_WRITER",
+        "thumbnail": "THUMBNAIL_GENERATOR",
+        "visuals": "VISUAL_PROMPT_MAKER"
       }
     }
     
