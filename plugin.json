@@ -16,6 +16,7 @@
       "version": "1",
       "description": "Ready-to-Use Prompts for Wildlife & Science Creators",
       "tags": ["Youtube"],
+      "pipeline": ["idea", "script", "thumbnail", "visuals"],
       "script": {
         "idea": "IDEA_GENERATOR.md",
         "script": "SCRIPT_WRITER.md",
@@ -24,5 +25,6 @@
         "map": "MAP.md"
       }
     }
+    
   ]
 }
