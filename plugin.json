@@ -1,29 +1,161 @@
 {
-  "metadata": {
-    "providerLink":"https://github.com/2noScript",
-    "providerName": "2noScript",
-    "providerAvatar":"https://github.com/2noScript.png",
-    "description": "Gen Script Pro",
-    "version": "1",
-    "remotePath": "https://raw.githubusercontent.com/2noScript/script-models/main/core",
-    "localPath": ""
+  "$schema": "https://schemas.scriptpro.dev/plugin-v2.json",
+  "id": "com.2noscript.wildlife",
+  "version": "2.0.0",
+  "minAppVersion": "2.0.0",
+
+  "info": {
+    "name": "Wildlife & Science Creators",
+    "author": "2noScript",
+    "description": "Ready-to-Use Prompts for Wildlife & Science Creators",
+    "icon": "https://github.com/2noScript.png",
+    "tags": ["Youtube"],
+    "categories": ["video"]
   },
-  "models": [
-    {
+
+  "i18n": {
+    "en": {
       "name": "Wildlife & Science Creators",
-      "author": "2noScript",
-      "path": "wildlife",
-      "version": "1",
-      "description": "Ready-to-Use Prompts for Wildlife & Science Creators",
-      "tags": ["Youtube"],
-      "pipeline": ["idea", "script", "thumbnail", "visuals"],
-      "script": {
-        "idea": "IDEA_GENERATOR",
-        "script": "SCRIPT_WRITER",
-        "thumbnail": "THUMBNAIL_GENERATOR",
-        "visuals": "VISUAL_PROMPT_MAKER"
+      "var_topic": "Topic",
+      "var_idea_quantity": "Number of Ideas",
+      "var_title": "Title",
+      "var_hook": "Hook",
+      "var_c1": "Creature 1",
+      "var_c2": "Creature 2",
+      "var_c3": "Creature 3",
+      "var_c4": "Creature 4",
+      "var_c5": "Creature 5",
+      "var_c6": "Creature 6",
+      "var_c7": "Creature 7",
+      "var_c8": "Creature 8",
+      "var_script_body": "Script Body",
+      "var_thumbnail_quantity": "Number of Thumbnails",
+      "var_thumbnail_text": "Thumbnail Text",
+      "step_idea": "Idea Generator",
+      "step_script": "Script Writer",
+      "step_thumbnail": "Thumbnail Generator",
+      "step_visuals": "Visual Prompt Maker"
+    }
+  },
+
+  "variables": {
+    "IDEA_QUANTITY": {
+      "type": "integer",
+      "labelKey": "var_idea_quantity",
+      "default": 5,
+      "ui": { "component": "slider", "min": 1, "max": 10 }
+    },
+    "TOPIC": {
+      "type": "string",
+      "labelKey": "var_topic",
+      "required": true,
+      "ui": { "component": "input" }
+    },
+    "TITLE": {
+      "type": "string",
+      "labelKey": "var_title",
+      "role": "selector"
+    },
+    "HOOK": { "type": "string", "labelKey": "var_hook" },
+    "C1": { "type": "string", "labelKey": "var_c1" },
+    "C2": { "type": "string", "labelKey": "var_c2" },
+    "C3": { "type": "string", "labelKey": "var_c3" },
+    "C4": { "type": "string", "labelKey": "var_c4" },
+    "C5": { "type": "string", "labelKey": "var_c5" },
+    "C6": { "type": "string", "labelKey": "var_c6" },
+    "C7": { "type": "string", "labelKey": "var_c7" },
+    "C8": { "type": "string", "labelKey": "var_c8" },
+    "SCRIPT_BODY": { "type": "text", "labelKey": "var_script_body" },
+    "THUMBNAIL_QUANTITY": {
+      "type": "integer",
+      "labelKey": "var_thumbnail_quantity",
+      "default": 5
+    },
+    "THUMBNAIL_TEXT": { "type": "string", "labelKey": "var_thumbnail_text" }
+  },
+
+  "steps": {
+    "idea": {
+      "labelKey": "step_idea",
+      "type": "generation",
+      "prompt": {
+        "system": "IDEA_GENERATOR/SYSTEM.md",
+        "input": "IDEA_GENERATOR/INPUT.md",
+        "outputSchema": "IDEA_GENERATOR/OUTPUT.md"
+      },
+      "inputs": ["TOPIC", "IDEA_QUANTITY"],
+      "outputs": {
+        "mode": "multi",
+        "selector": "$.title",
+        "assign": {
+          "TITLE": "$.title",
+          "HOOK": "$.hook",
+          "C1": "$.items[0]",
+          "C2": "$.items[1]",
+          "C3": "$.items[2]",
+          "C4": "$.items[3]",
+          "C5": "$.items[4]",
+          "C6": "$.items[5]",
+          "C7": "$.items[6]",
+          "C8": "$.items[7]"
+        }
+      }
+    },
+    "script": {
+      "labelKey": "step_script",
+      "type": "generation",
+      "prompt": {
+        "system": "SCRIPT_WRITER/SYSTEM.md",
+        "input": "SCRIPT_WRITER/INPUT.md",
+        "outputSchema": "SCRIPT_WRITER/OUTPUT.md"
+      },
+      "inputs": ["TITLE", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8"],
+      "outputs": {
+        "mode": "single",
+        "assign": {
+          "SCRIPT_BODY": "$.script_body"
+        }
+      }
+    },
+    "thumbnail": {
+      "labelKey": "step_thumbnail",
+      "type": "generation",
+      "prompt": {
+        "system": "THUMBNAIL_GENERATOR/SYSTEM.md",
+        "input": "THUMBNAIL_GENERATOR/INPUT.md",
+        "outputSchema": "THUMBNAIL_GENERATOR/OUTPUT.md"
+      },
+      "inputs": ["TITLE", "THUMBNAIL_QUANTITY", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8"],
+      "outputs": {
+        "mode": "multi",
+        "selector": "$.title",
+        "assign": {
+          "THUMBNAIL_TEXT": "$.text"
+        }
+      }
+    },
+    "visuals": {
+      "labelKey": "step_visuals",
+      "type": "generation",
+      "prompt": {
+        "system": "VISUAL_PROMPT_MAKER/SYSTEM.md",
+        "input": "VISUAL_PROMPT_MAKER/INPUT.md",
+        "outputSchema": "VISUAL_PROMPT_MAKER/OUTPUT.md"
+      },
+      "inputs": ["SCRIPT_BODY"],
+      "outputs": {
+        "mode": "single",
+        "assign": {}
       }
     }
-    
-  ]
+  },
+
+  "pipeline": {
+    "startAt": "idea",
+    "edges": [
+      { "from": "idea", "to": "script" },
+      { "from": "script", "to": "thumbnail" },
+      { "from": "thumbnail", "to": "visuals" }
+    ]
+  }
 }
